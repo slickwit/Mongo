@@ -27,7 +27,7 @@ npm install
 3. Create a `.env` file in the root directory:
 
 ```env
-PORT=3000
+PORT=5000
 MONGODB_URI=mongodb://localhost:27017/your-database
 NODE_ENV=development
 ```
