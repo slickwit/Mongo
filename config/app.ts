@@ -1,24 +1,32 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import { errorHandler } from "../middleware/errorHandler";
-import { routes } from "../routes";
+import express from 'express'
+import cors from 'cors'
+import helmet from 'helmet'
+import { errorHandler } from '../middleware/errorHandler'
+import { routes } from '../routes'
+import { createController } from 'express-extract-routes'
 
 // Create an express application
 export const createApp = (): express.Application => {
-  const app = express();
+  const app = express()
 
   // Middleware
-  app.use(helmet());
-  app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(helmet())
+  app.use(cors())
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: true }))
 
-  // Routes
-  app.use(routes);
+  //Routes
+  routes.forEach((route) => {
+    app[route.method](
+      //you can add prefix
+      `/api${route.path}`,
+      //add here the middlewares
+      createController(route) // generating routing
+    )
+  })
 
   // Error handler
-  app.use(errorHandler);
+  app.use(errorHandler)
 
-  return app;
-};
+  return app
+}

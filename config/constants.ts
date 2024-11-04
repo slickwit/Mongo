@@ -7,19 +7,7 @@ export const config = {
   },
 
   DB: {
-    URI: "mongodb+srv://darielavila43:m5JcyIOUCcN6IjfJ@tarlac.yjnmgso.mongodb.net/?retryWrites=true&w=majority&appName=Tarlac",
+    // :)
+    URI: 'mongodb+srv://darielavila43:m5JcyIOUCcN6IjfJ@tarlac.yjnmgso.mongodb.net/?retryWrites=true&w=majority&appName=Tarlac',
   },
-
-  ENDPOINTS: {
-    MAIN: "/",
-    SERVER: "/api",
-    USER: {
-      MAIN: "/user",
-      GET_ALL: "/get/all",
-      GET: "/get/:id",
-      CREATE: "/create",
-      UPDATE: "/update",
-      DELETE: "/delete/:id",
-    },
-  },
-};
+}
