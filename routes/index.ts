@@ -1,10 +1,7 @@
-import { Router } from "express";
-import { config } from "../config/constants";
-import serverRoutes from "./serverRoute";
-import userRoutes from "./userRoute";
+//clean
+import { extract } from 'express-extract-routes'
+//used relative path to get the controller during runtime
+import { UserController } from '../controllers/userController'
+import { ServerController } from '../controllers/serverController'
 
-export const routes = Router();
-
-// Add all routes here
-routes.use(serverRoutes);
-routes.use(config.ENDPOINTS.SERVER + config.ENDPOINTS.USER.MAIN, userRoutes);
+export const routes = extract(UserController, ServerController)
