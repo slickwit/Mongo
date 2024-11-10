@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
-import { errorHandler } from '../middleware/errorHandler'
+import { errorHandler, notFound } from '../middleware/errorHandler'
 import { routes } from '../routes'
 import { createController } from 'express-extract-routes'
 
@@ -26,6 +26,7 @@ export const createApp = (): express.Application => {
   })
 
   // Error handler
+  app.use(notFound)
   app.use(errorHandler)
 
   return app
