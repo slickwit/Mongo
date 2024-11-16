@@ -1,6 +1,7 @@
 import { UserRepository } from "../repositories/userRepository";
 import { AppError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
+import { FilterQuery } from "mongoose";
 
 // Purpose: This service class is responsible for handling the business logic of the user entity. It interacts with the user repository to perform CRUD operations on the user entity.
 export class UserService {
@@ -40,6 +41,14 @@ export class UserService {
 
   async deleteUser(id: string): Promise<UserModel | null> {
     const user = await this.userRepository.deleteUser(id);
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+    return user;
+  }
+
+  async searchUser(query: FilterQuery<UserModel>): Promise<UserModel | null> {
+    const user = await this.userRepository.searchUser(query);
     if (!user) {
       throw new AppError("User not found", 404);
     }
