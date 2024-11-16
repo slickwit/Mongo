@@ -23,6 +23,10 @@ export class UserRepository {
     return User.findByIdAndDelete(id);
   }
 
+  async searchUser(query: FilterQuery<UserModel>): Promise<UserModel | null> {
+    return User.findOne(query);
+  }
+
   async searchAndUpdate(
     query: FilterQuery<UserModel>,
     update?: UpdateQuery<UserModel>,

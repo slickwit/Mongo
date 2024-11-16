@@ -7,7 +7,7 @@ export interface UserModel extends Document {
   password: string;
 }
 
-const UserSchema = new Schema(
+const UserSchema: Schema<UserModel> = new Schema(
   {
     username: {
       type: String,
